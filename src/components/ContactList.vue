@@ -8,15 +8,13 @@ export default {
     },
     methods: {
         getPage(pageNumber) {
+            let str = "https://reqres.in/api/users"
             if (pageNumber > 1) {
-                const response = fetch("https://reqres.in/api/users?page=" + pageNumber)
-                    .then(response => response.json())
-                    .then(data => this.post = data)
-            } else {
-                const response = fetch("https://reqres.in/api/users")
-                    .then(response => response.json())
-                    .then(data => this.post = data)
-            }
+                str += "?page=" + pageNumber
+            } 
+            const response = fetch(str)
+                .then(response => response.json())
+                .then(data => this.post = data)
         }
     }, 
     mounted() {
@@ -99,10 +97,5 @@ button {
     border-radius: 50%;
     border: none;
     cursor: pointer;
-}
-
-button:active,
-button:focus-visible {
-    background: lightblue;
 }
 </style>
